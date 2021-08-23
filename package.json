@@ -40,7 +40,7 @@
   "scripts": {
     "dev": "microbundle watch",
     "build": "microbundle",
-    "docs": "documentation readme src/*.tsx -q --section API && yarn fixreadme",
+    "docs": "documentation readme src/*.tsx -q --section COMPONENTS && yarn fixreadme",
     "lint": "eslint -c .eslintrc.js ./src/*.tsx --fix",
     "prepare": "rm -rf dist && yarn build",
     "test": "jest --config jest.config.js",

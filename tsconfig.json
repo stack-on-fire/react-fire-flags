@@ -22,8 +22,6 @@
     "jsx": "react"
   },
   "include": [
-    "src",
-    ".eslintrc.js",
-    "config-overrides.js"
+    "src"
   ]
 }

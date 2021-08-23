@@ -7,9 +7,15 @@
   "license": "MIT",
   "private": false,
   "source": "src/index.tsx",
-  "main": "dist/react-fire-flags.js",
-  "module": "dist/react-fire-flags.es.js",
-  "umd:main": "dist/react-fire-flags.umd.js",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "umd:main": "dist/index.umd.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "package.json"
+  ],
   "devDependencies": {
     "@babel/preset-env": "7.5.5",
     "@types/react": "^17.0.17",
@@ -38,15 +44,12 @@
     "react": "*"
   },
   "scripts": {
-    "dev": "microbundle watch",
-    "build": "microbundle",
-    "docs": "documentation readme src/*.tsx -q --section COMPONENTS && yarn fixreadme",
+    "dev": "microbundle watch  --jsx React.createElement --tsconfig tsconfig.json",
+    "build": "microbundle --jsx React.createElement --tsconfig tsconfig.json",
     "lint": "eslint -c .eslintrc.js ./src/*.tsx --fix",
     "prepare": "rm -rf dist && yarn build",
     "test": "jest --config jest.config.js",
     "test:watch": "jest --watch",
-    "test:size": "bundlesize",
-    "fixreadme": "node -e 'var fs=require(\"fs\");fs.writeFileSync(\"README.md\", fs.readFileSync(\"README.md\", \"utf8\").replace(/^-   /gm, \"- \"))'",
     "release": "yarn -s prepare && git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags && npm publish"
   }
 }

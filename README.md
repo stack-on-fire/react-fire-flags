@@ -91,11 +91,11 @@ const Home = () => (
 
 #### useFlags
 
-Get the list of active flags.
+Get the list of all flags.
 
 #### useFlag
 
-Find the flag with then name `name` if active.
+Find the flag with then name `name`.
 
 #### useFeature
 

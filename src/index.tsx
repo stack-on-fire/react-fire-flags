@@ -1,23 +1,31 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 export type Flag = {
+  id: string,
+  projectId: string,
   name: string,
+  description?: string,
+  isActive: boolean,
+  isArchived: boolean,
+  createdAt: string,
+  updatedAt: string,
 };
 
 const FlagsContext = React.createContext<Flag[]>([]);
 
 /**
- * Get the list of active flags.
+ * Get the list of all flags.
  */
 export const useFlags = (): Flag[] => useContext(FlagsContext);
 /**
- * Find the flag with then name `name` if active.
+ * Find the flag with then name `name`.
  */
 export const useFlag = (name: string) => useFlags().find((flag) => flag.name === name);
 /**
  * Check if the flag with `name` is active.
  */
-export const useFeature = (name: string) => useFlags().some((flag) => flag.name === name);
+export const useFeature = (name: string) => useFlags()
+  .some((flag) => (flag.name === name && flag.isActive));
 
 export type FeatureProps = React.PropsWithChildren<{
   /**

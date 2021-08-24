@@ -2,6 +2,7 @@
   "name": "react-fire-flags",
   "version": "0.0.1",
   "description": "A component library to use with https://github.com/stack-on-fire/fire-flags",
+  "keywords": ["react", "fire-flags", "feature flags", "feature"],
   "repository": "https://github.com/alfredosalzillo/react-fire-flags",
   "author": "alfredo.salzillo <noctisbels@gmai.com>",
   "license": "MIT",

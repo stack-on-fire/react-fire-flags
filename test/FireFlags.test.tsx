@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import React from 'react';
 import { FireFlags, Flag } from '../src';
 import FlagsContext from '../src/context';
-import { mockFetchWithJsonValue } from './test-utils';
+import mockFetchWithJsonValue from './utils/mockFetchWithJsonValue';
 
 describe('<FireFlags />', () => {
   it('should throw if {projectId} is missing', async () => {

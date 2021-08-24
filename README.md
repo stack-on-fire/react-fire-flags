@@ -85,7 +85,7 @@ Example:
 const CoolFeature = () => <p>Coll feature active</p>
 const Home = () => (
 <div>
-   <Feature>
+   <Feature name="fluffy-wolfy">
      <CoolFeature />
    </Feature>
 </div>

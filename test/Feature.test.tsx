@@ -1,8 +1,8 @@
 import { render, waitFor, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import React from 'react';
-import { mockFetchWithJsonValue } from './test-utils';
-import { Feature, FireFlags } from '../src';
+import { Feature } from '../src';
+import FlagsContext from '../src/context';
 
 const flags = [{
   id: 'test',
@@ -26,54 +26,46 @@ const flags = [{
 
 describe('<Feature />', () => {
   it('should render the {children} when the flag {name} is active', async () => {
-    mockFetchWithJsonValue(flags);
     render(
-      <FireFlags projectId="test">
+      <FlagsContext.Provider value={flags}>
         <Feature name="test-feature-active">
           Hello World
         </Feature>
-      </FireFlags>
+      </FlagsContext.Provider>
     );
-    await waitFor(() => expect(fetch).toHaveBeenCalled());
     const element = await waitFor(() => screen.findByText('Hello World'));
     expect(element).toHaveTextContent('Hello World');
   });
   it('should render the {fallback} when the flag {name} is not active', async () => {
-    mockFetchWithJsonValue(flags);
     render(
-      <FireFlags projectId="test">
+      <FlagsContext.Provider value={flags}>
         <Feature name="test-feature-not-active" fallback={<span>Not Hello World</span>}>
           Hello World
         </Feature>
-      </FireFlags>
+      </FlagsContext.Provider>
     );
-    await waitFor(() => expect(fetch).toHaveBeenCalled());
     const element = await waitFor(() => screen.findByText('Not Hello World'));
     expect(element).toHaveTextContent('Not Hello World');
   });
   it('should render the {fallback} when the flag {name} don\' exists', async () => {
-    mockFetchWithJsonValue(flags);
     render(
-      <FireFlags projectId="test">
+      <FlagsContext.Provider value={flags}>
         <Feature name="test-feature-don't exists" fallback={<span>Not Hello World</span>}>
           Hello World
         </Feature>
-      </FireFlags>
+      </FlagsContext.Provider>
     );
-    await waitFor(() => expect(fetch).toHaveBeenCalled());
     const element = await waitFor(() => screen.findByText('Not Hello World'));
     expect(element).toHaveTextContent('Not Hello World');
   });
   it('should not render the {children} when the flag {name} is not active', async () => {
-    mockFetchWithJsonValue(flags);
     render(
-      <FireFlags projectId="test">
+      <FlagsContext.Provider value={flags}>
         <Feature name="test-feature-not-active" fallback={<span>Not Hello World</span>}>
           Hello World
         </Feature>
-      </FireFlags>
+      </FlagsContext.Provider>
     );
-    await waitFor(() => expect(fetch).toHaveBeenCalled());
     await waitFor(() => screen.findByText('Not Hello World'));
     try {
       await screen.findByText('Hello World');
@@ -83,15 +75,13 @@ describe('<Feature />', () => {
     }
   });
   it('should not render the {children} when the flag {name} don\'t exists', async () => {
-    mockFetchWithJsonValue(flags);
     render(
-      <FireFlags projectId="test">
+      <FlagsContext.Provider value={flags}>
         <Feature name="test-feature-not-exists" fallback={<span>Not Hello World</span>}>
           Hello World
         </Feature>
-      </FireFlags>
+      </FlagsContext.Provider>
     );
-    await waitFor(() => expect(fetch).toHaveBeenCalled());
     await waitFor(() => screen.findByText('Not Hello World'));
     try {
       await screen.findByText('Hello World');

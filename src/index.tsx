@@ -92,7 +92,7 @@ const defaultUrl = 'https://flags.stackonfire.dev';
  * }
  * ```
  */
-export const FireFlags: React.FunctionComponent<FireFlagsProps>= ({
+export const FireFlags: React.FunctionComponent<FireFlagsProps> = ({
   children,
   projectId,
   url = defaultUrl,

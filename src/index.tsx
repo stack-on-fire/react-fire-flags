@@ -96,7 +96,6 @@ export const FireFlags: React.FunctionComponent<FireFlagsProps>= ({
   children,
   projectId,
   url = defaultUrl,
-
 }) => {
   if (projectId === undefined) {
     throw new Error('FlagsProvider expects project id');

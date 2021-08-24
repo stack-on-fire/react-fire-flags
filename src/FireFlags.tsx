@@ -38,7 +38,7 @@ const FireFlags: React.FunctionComponent<FireFlagsProps> = ({
   url = defaultUrl,
 }) => {
   if (projectId === undefined) {
-    throw new Error('FlagsProvider expects project id');
+    throw new Error('FireFlags expects project id');
   }
   const [data, setData] = useState<Flag[]>([]);
   useEffect(() => {

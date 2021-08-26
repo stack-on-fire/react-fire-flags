@@ -5,7 +5,7 @@
 [![npm version](https://badge.fury.io/js/react-fire-flags.svg)](https://badge.fury.io/js/react-fire-flags)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-A component library to use [stack-on-fire/fire-flags](https://github.com/stack-on-fire/fire-flags) apis.
+A component library to use with the API provided by [stack-on-fire/fire-flags](https://github.com/stack-on-fire/fire-flags).
 
 ## Install
 
@@ -50,7 +50,7 @@ export function App() {
 
 #### FireFlags
 
-The provider to configure of the fire-flags server. Must be added to the root of the project before using any of the hooks or components.
+The provider to configure the communication with the fire-flags server. Must be added at the root of the project before using any of the hooks or components.
 Props:
 - `projectId` required the id of the fire-flags project
 - `url` optional the url of the fire-flags  backend, to pass if using a self-hosted version 
@@ -72,11 +72,11 @@ function App() {
 
 #### Feature
 
-A guard that render the `children` if the flag with `name` exists. 
+A guard that renders the `children` if the flag with `name` exists. 
 The `fallback` is rendered otherwise.
 
 Props:
-- `name` require the name of the flag to check if is active
+- `name` require the name of the flag to check if it is active
 - `fallback` the fallback component to render if the flag is not active
 
 Example:

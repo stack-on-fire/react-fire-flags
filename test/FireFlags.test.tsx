@@ -19,6 +19,19 @@ describe('<FireFlags />', () => {
     render(<FireFlags projectId="xxx-xxx-xxx" url="fake-url://test" />);
     await waitFor(() => expect(fetch).toHaveBeenCalledWith('fake-url://test/api/flags/xxx-xxx-xxx'));
   });
+  it('should call fetch with the {url} and {projectId} without the config', async () => {
+    mockFetchWithJsonValue([]);
+    render(<FireFlags projectId="xxx-xxx-xxx" url="fake-url://test" />);
+    await waitFor(() => expect(fetch).toHaveBeenCalledWith('fake-url://test/api/flags/xxx-xxx-xxx'));
+  });
+  it('should call fetch with the {url} and {projectId} with the config', async () => {
+    mockFetchWithJsonValue([]);
+    const config = {
+      role: 'admin',
+    };
+    render(<FireFlags projectId="xxx-xxx-xxx" url="fake-url://test" config={config}/>);
+    await waitFor(() => expect(fetch).toHaveBeenCalledWith('fake-url://test/api/flags/xxx-xxx-xxx?role=admin'));
+  });
   it('should render the {children}', async () => {
     mockFetchWithJsonValue([]);
     render(

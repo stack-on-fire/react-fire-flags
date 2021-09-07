@@ -13,6 +13,10 @@ export type FireFlagsProps = React.PropsWithChildren<{
    * self-hosted version
    */
   url?: string,
+  /**
+   * The heats configuration.
+   */
+  config?: Record<string, string>,
 }>;
 /**
  * The provider to configure of the fire-flags server.
@@ -36,13 +40,16 @@ const FireFlags: React.FunctionComponent<FireFlagsProps> = ({
   children,
   projectId,
   url = defaultUrl,
+  config = {},
 }) => {
   if (projectId === undefined) {
     throw new Error('FireFlags expects project id');
   }
   const [data, setData] = useState<Flag[]>([]);
   useEffect(() => {
-    fetch(`${url}/api/flags/${projectId}`)
+    const search = new URLSearchParams(config).toString();
+    const uri = [`${url}/api/flags/${projectId}`, search].filter(Boolean).join('?');
+    fetch(uri)
       .then((res) => res.json())
       .then(setData);
   }, [projectId, url]);

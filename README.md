@@ -54,6 +54,7 @@ The provider to configure the communication with the fire-flags server. Must be 
 Props:
 - `projectId` required the id of the fire-flags project
 - `url` optional the url of the fire-flags  backend, to pass if using a self-hosted version 
+- `config` optional a map of heats configurations
 
 Example:
 
@@ -63,6 +64,9 @@ function App() {
     <FireFlags
        projectId={process.env.REACT_APP_FIRE_FLAGS_PROJECT_ID}
        url={process.env.REACT_APP_FIRE_FLAGS_URL}
+       config={{
+         role: 'user',
+       }}
     >
       Hello World!
     </FireFlags>
